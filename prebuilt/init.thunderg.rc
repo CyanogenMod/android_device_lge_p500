@@ -1,0 +1,196 @@
+on boot-ftm-power
+    exec sbin/ftm_power
+
+on boot-pause
+    exec sbin/chargerlogo
+
+on boot
+    chown bluetooth bluetooth /sys/module/bluetooth_power/parameters/power
+    chown bluetooth bluetooth /sys/class/rfkill/rfkill0/type
+    chown bluetooth bluetooth /sys/class/rfkill/rfkill0/state
+    chown bluetooth bluetooth /proc/bluetooth/sleep/proto
+    chown system system /sys/module/sco/parameters/disable_esco
+    chmod 0660 /sys/module/bluetooth_power/parameters/power
+    chmod 0660 /sys/class/rfkill/rfkill0/state
+    chmod 0660 /proc/bluetooth/sleep/proto
+    chown bluetooth bluetooth /dev/ttyHS0
+    chmod 0660 /dev/ttyHS0
+    chmod 0666 /dev/msm_snd
+    
+#    chmod 0666 /dev/msm_camera/config0
+#    chmod 0666 /dev/msm_camera/control0
+#    chmod 0666 /dev/msm_camera/frame0
+    
+## VIBRATOR
+    chmod 0666 /sys/class/timed_output/vibrator/amp
+## SENSOR
+    chown system system /dev/ami304
+    chmod 0666 dev/ami304
+    chown system system /dev/ami304daemon
+    chmod 0666 dev/ami304daemon
+    chown system system /dev/ami304hal
+    chmod 0666 /dev/ami304hal
+    mkdir /data/amit 0770 ami304d ami304d
+    chown system system /dev/KR3DH
+    chmod 0666 /dev/KR3DH
+    chown system system /dev/KR3DM
+    chmod 0666 /dev/KR3DM
+## PROXIMITY SENSOR
+    chmod 0666 /sys/bus/i2c/drivers/proximity_gp2ap/4-0044/enable
+## USB
+    chmod 0666 /sys/devices/platform/msm_hsusb_periphera/composition
+    
+    chmod 0666 /dev/oncrpc/3000008c:00050000
+
+    chown root root /dev/hw3d
+    chmod 0666 /dev/hw3d
+    chown root root /dev/kgsl-3d0
+    chmod 0666 /dev/kgsl-3d0
+    chmod 0666 /dev/pmem
+    chown system graphics /dev/pmem_gpu
+    chmod 0666 /dev/pmem_gpu
+    chown system graphics /dev/pmem_gpu1
+    chmod 0666 /dev/pmem_gpu1
+    chown system audio /dev/msm_aac
+    chmod 0660 /dev/msm_aac
+    chown system audio /dev/msm_amrnb_in
+    chmod 0660 /dev/msm_amrnb_in
+    chown system audio /dev/msm_amrnb
+    chmod 0660 /dev/msm_amrnb
+    chown system audio /dev/msm_qcelp
+    chmod 0660 /dev/msm_qcelp
+    chown system audio /dev/msm_evrc
+    chmod 0660 /dev/msm_evrc
+    chown system audio /dev/msm_voicememo
+    chmod 0660 /dev/msm_voicememo
+    chown system graphics /dev/msm_rotator
+    chmod 0660 /dev/msm_rotator
+    chown system audio /dev/msm_preproc_ctl
+    chmod 0660 /dev/msm_preproc_ctl
+## AUDIO - SBA52101007
+    chown system audio /dev/pmem_smipool
+    chmod 0660 /dev/pmem_smipool
+    chown system audio /dev/pmem_audio
+    chmod 0660 /dev/pmem_audio
+## QCT5320
+    chown system audio /dev/msm_amr_in
+    chmod 0660 /dev/msm_amr_in
+    chown system audio /dev/msm_amrwb
+    chmod 0660 /dev/msm_amrwb
+    chown system audio /dev/msm_vidc_reg
+    chmod 0660 /dev/msm_vidc_reg
+    chown system audio /dev/msm_vidc_dec
+    chmod 0660 /dev/msm_vidc_dec
+    chown system audio /dev/msm_vidc_enc
+    chmod 0660 /dev/msm_vidc_enc
+
+    chmod 0666 /dev/graphics/fb0
+    chmod 0666 /sys/class/leds/lcd-backlight/alc
+
+    chown system system /dev/system_bus_freq
+    chmod 0660 /dev/system_bus_freq
+    chown system system /dev/cpu_dma_latency
+    chmod 0660 /dev/cpu_dma_latency
+
+    mkdir /data/radio 0770 radio radio
+    chown system radio /dev/rtc1
+    chmod 0660 radio /dev/rtc1
+    exec /system/xbin/busybox rm /data/gadget.pid
+
+# WIFI
+    mkdir /data/misc/wifi/sockets 0770 wifi wifi
+#DHCP
+    mkdir /data/misc/dhcp 0777 system system
+    chmod 0666 /data/bdaddr
+
+
+service bdaddr /system/bin/bdaddr_read
+    user root
+    disabled
+    oneshot
+
+on property:init.svc.bootanim=running
+    start bdaddr
+
+service hciattach /system/bin/brcm_patchram_plus -d --baudrate 4000000 --patchram /system/bin/BCM4325D1_004.002.004.0218.0248.hcd --enable_hci /dev/ttyHS0
+    user bluetooth
+    group bluetooth net_bt_admin
+    disabled
+    oneshot
+
+service qmuxd /system/bin/qmuxd 
+
+service ami304d /system/bin/ami304d
+
+service wpa_supplicant /system/bin/wpa_supplicant -Dwext -iwlan0 -c/data/misc/wifi/wpa_supplicant.conf #-dd
+    socket wpa_wlan0 dgram 660 wifi wifi
+    group system wifi inet
+    disabled
+    oneshot
+
+service iprenew_wlan0 /system/bin/dhcpcd -n wlan0
+    disabled
+    oneshot
+
+service dhcpcd_wlan0 /system/bin/dhcpcd -BKL wlan0
+    disabled
+    oneshot
+
+on property:init.svc.wpa_supplicant=stopped
+    stop dhcpcd_wlan0
+
+# bugreport is triggered by the KEY_VOLUME_DOWN and KEY_MENU keycodes
+service bugreport /system/bin/logwrapper /system/bin/dumpstate -d -v -o /sdcard/bugreports/bugreport
+    disabled
+    oneshot
+    keycodes 114 139
+
+# mcs6000 TOUCH F/W AUTO upgrade run
+# LGE_CHANGE_S [ynj.kim,2010-06-23 ]
+service tsdown /system/bin/tsdown
+    oneshot
+
+service wiperiface /system/bin/wiperiface
+    user location
+    group qcom_oncrpc
+    oneshot
+
+#service rmt_storage /system/bin/rmt_storage /dev/block/mmcblk0p10 /dev/block/mmcblk0p11
+#    user root
+#    socket port_bridge stream 660 root radio
+#    disabled
+
+#service port-bridge /system/bin/port-bridge /dev/smd0 /dev/ttyGS0
+#    socket port_bridge stream 660 root radio
+#    disabled
+
+#on property:init.svc.bootanim=stopped
+#    start port-bridge
+
+#service netmgrd /system/bin/netmgrd -E
+#    disabled
+
+#on property:ro.use_data_netmgrd=true
+#    start netmgrd
+
+service gadget_id /system/bin/gadget_id
+    user root
+    disabled
+    oneshot
+
+on property:persist.service.adb.enable=1
+    start gadget_id
+
+on property:persist.service.adb.enable=0
+    start gadget_id
+
+on property:net.usb_tethering=1
+    start gadget_id
+
+on property:net.usb_tethering=0
+    start gadget_id
+
+service bootlogo sbin/bootlogo
+	user root
+	group root
+	oneshot

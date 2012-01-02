@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2009 The Android Open Source Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+
+<resources>
+    <integer name="config_desktopScreens">2</integer>
+    <integer name="config_defaultScreen">1</integer>
+    <bool name="config_uiDots">false</bool>
+    <bool name="config_uiDockbar">false</bool>
+    <bool name="config_uiCloseDockbar">false</bool>
+    <bool name="config_uiCloseFolder">true</bool>
+    <bool name="config_autosizeIcons">true</bool>
+    <bool name="config_desktop_indicator">true</bool>
+    <bool name="config_desktop_indicator_autohide">true</bool>
+    <!-- 1=top dots, 2=top slider, 3=bottom slider -->
+    <string name="config_desktop_indicator_type">3</string>
+    <string name="config_desktop_transition">1</string>
+    <bool name="config_system_persistent">true</bool>
+    <!-- 1=sensor, 2=portrait, 3=landscape -->
+    <string name="config_orientation_default">2</string>
+    <!-- 1=low quality,2=auto, 3=disabled -->
+    <string name="config_screenCache">2</string>
+    <bool name="config_nagScreen">true</bool>
+    <bool name="config_drawer_navigate_catalogs">true</bool>
+    <bool name="config_drawer_ungroup_catalog">false</bool>
+    <bool name="config_drawer_title_catalogs">true</bool>
+</resources>
