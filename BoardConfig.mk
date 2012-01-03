@@ -6,8 +6,8 @@ TARGET_CPU_ABI2 := armeabi
 TARGET_BOARD_PLATFORM_GPU := qcom-adreno200
 
 # Board identifier
-TARGET_BOOTLOADER_BOARD_NAME := thunderg
-TARGET_OTA_ASSERT_DEVICE := thunderg
+TARGET_BOOTLOADER_BOARD_NAME := p500
+TARGET_OTA_ASSERT_DEVICE := thunderg,p500
 
 # Target Boot & Recovery
 TARGET_NO_BOOTLOADER := true

@@ -7,10 +7,10 @@ PRODUCT_PACKAGES += \
     librs_jni \
     libmm-omxcore \
     libOmxCore \
-    gps.thunderg \
-    lights.thunderg \
-    copybit.thunderg \
-    gralloc.thunderg \
+    gps.p500 \
+    lights.p500 \
+    copybit.p500 \
+    gralloc.p500 \
     bdaddr_read \
     gadget_id \
     bash
@@ -98,7 +98,7 @@ PRODUCT_COPY_FILES += \
 # Graphics-2D (using proprietary because of poor perfomance of open source libs)
 #PRODUCT_COPY_FILES += \
 #    vendor/lge/p500/proprietary/lib/hw/gralloc.default.so:system/lib/hw/gralloc.default.so \
-#    vendor/lge/p500/proprietary/lib/hw/gralloc.thunderg.so:system/lib/hw/gralloc.thunderg.so \
+#    vendor/lge/p500/proprietary/lib/hw/gralloc.p500.so:system/lib/hw/gralloc.p500.so \
 
 # Graphics-3D
 PRODUCT_COPY_FILES += \
@@ -182,7 +182,7 @@ PRODUCT_COPY_FILES += \
 # Sensors
 PRODUCT_COPY_FILES += \
     vendor/lge/p500/proprietary/bin/ami304d:system/bin/ami304d \
-    vendor/lge/p500/proprietary/lib/hw/sensors.thunderg.so:system/lib/hw/sensors.thunderg.so \
+    vendor/lge/p500/proprietary/lib/hw/sensors.p500.so:system/lib/hw/sensors.p500.so \
     vendor/lge/p500/proprietary/lib/libsensorservice.so:system/lib/libsensorservice.so \
 
 # Touchscreen firmware updater

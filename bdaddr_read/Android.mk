@@ -13,7 +13,7 @@
 # limitations under the License.
 
 
-ifeq ($(TARGET_BOOTLOADER_BOARD_NAME),thunderg)
+ifeq ($(TARGET_BOOTLOADER_BOARD_NAME),p500)
 
 LOCAL_PATH:= $(call my-dir)
 include $(CLEAR_VARS)

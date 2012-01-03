@@ -1,5 +1,4 @@
-# system.prop for thunderg
-# camera/camcorder options, hyejin.kim@lge.com
+# system.prop for p500
 ro.media.enc.hprof.file.format=mp4
 ro.media.enc.hprof.codec.vid=m4v
 ro.media.enc.hprof.codec.aud=amrnb
