@@ -76,6 +76,7 @@ extern "C" {
 #define DEFAULT_PICTURE_HEIGHT 768
 #define THUMBNAIL_BUFFER_SIZE (THUMBNAIL_WIDTH * THUMBNAIL_HEIGHT * 1.5)
 #define MAX_ZOOM_LEVEL 6
+#define ZOOM_STEP 10
 #define NOT_FOUND -1
 // Number of video buffers held by kernel (initially 1, 2, and 3)
 #define ACTIVE_VIDEO_BUFFERS 3
@@ -1098,9 +1099,9 @@ void QualcommCameraHardware::initDefaultParameters()
 
     mParameters.set("luma-adaptation", "3");
     mParameters.set(CameraParameters::KEY_ZOOM_SUPPORTED, "true");
-    mParameters.set(CameraParameters::KEY_ZOOM_RATIOS, "100,125,150,175,200,225,250,275,300,325,350,375,400,425,450,475,500");
+    mParameters.set(CameraParameters::KEY_ZOOM_RATIOS, "100,150,200,250,300,350,400");
     mParameters.set(CameraParameters::KEY_MAX_ZOOM, MAX_ZOOM_LEVEL);
-    mParameters.set("zoom", 100);
+    mParameters.set("zoom", 0);
     mParameters.set(CameraParameters::KEY_PICTURE_FORMAT,
                     CameraParameters::PIXEL_FORMAT_JPEG);
 
@@ -1380,7 +1381,7 @@ static bool native_get_maxzoom(int camfd, void *pZm)
              strerror(errno));
         return false;
     }
-    LOGE("native_get_maxzoom: ctrlCmd.value = %d", *(int32_t *)ctrlCmd.value);
+    LOGD("native_get_maxzoom: ctrlCmd.value = %d", *(int32_t *)ctrlCmd.value);
     memcpy(pZoom, (int32_t *)ctrlCmd.value, sizeof(int32_t));
 
     LOGV("native_get_maxzoom X");
@@ -2611,7 +2612,7 @@ status_t QualcommCameraHardware::startPreviewInternal()
         mParameters.set("zoom-supported", "false");
         mMaxZoom = 0;
     }
-    mParameters.set("max-zoom",mMaxZoom);
+    mParameters.set("max-zoom", mMaxZoom / ZOOM_STEP);
 
     LOGV("startPreviewInternal X");
     return NO_ERROR;
@@ -4260,7 +4261,6 @@ status_t QualcommCameraHardware::setZoom(const CameraParameters& params)
     // size is. Ex: zoom level 1 is always 1.2x, zoom level 2 is 1.44x, etc. So,
     // we need to have a fixed maximum zoom value and do read it from the
     // driver.
-    static const int ZOOM_STEP = 4;
     int32_t zoom_level = params.getInt("zoom");
 
     LOGV("Set zoom=%d", zoom_level);

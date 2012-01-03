@@ -44,7 +44,7 @@ BOARD_VENDOR_QCOM_GPS_LOC_API_HARDWARE := thunderg
 BOARD_VENDOR_QCOM_GPS_LOC_API_AMSS_VERSION := 50000
 
 # Graphics
-BOARD_EGL_CFG := vendor/lge/p500/proprietary/system/lib/egl/egl.cfg
+BOARD_EGL_CFG := vendor/lge/p500/proprietary/lib/egl/egl.cfg
 BOARD_NO_RGBX_8888 := true
 BOARD_USE_NASTY_PTHREAD_CREATE_HACK := true
 TARGET_DO_NOT_SETS_CAN_DRAW := true
