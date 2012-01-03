@@ -1,137 +1,114 @@
-# Offline Charging
-sbin/bootlogo
-sbin/chargerlogo
-sbin/ftm_power
-bootimages/opening_01.rle
-bootimages/opening_02.rle
-bootimages/opening_03.rle
-bootimages/opening_04.rle
-bootimages/opening_05.rle
-bootimages/opening_06.rle
-bootimages/opening_07.rle
-bootimages/opening_08.rle
-chargerimages/black_bg.rle
-chargerimages/battery_bg.rle
-chargerimages/battery_ani_01.rle
-chargerimages/battery_ani_02.rle
-chargerimages/battery_ani_03.rle
-chargerimages/battery_ani_04.rle
-chargerimages/battery_ani_05.rle
-chargerimages/battery_charging_01.rle
-chargerimages/battery_charging_02.rle
-chargerimages/battery_charging_03.rle
-chargerimages/battery_charging_04.rle
-chargerimages/battery_charging_05.rle
-chargerimages/battery_charging_06.rle
-chargerimages/battery_wait_ani_01.rle
-chargerimages/battery_wait_ani_02.rle
-system/init
+init
 
 # Audio
-system/etc/AudioFilter.csv
-system/etc/AutoVolumeControl.txt
-system/lib/liba2dp.so
-system/lib/libaudioeq.so
+etc/AudioFilter.csv
+etc/AutoVolumeControl.txt
+lib/liba2dp.so
+lib/libaudioeq.so
 
 # Bluetooth
-system/bin/BCM4325D1_004.002.004.0218.0248.hcd
+bin/BCM4325D1_004.002.004.0218.0248.hcd
 
 # Camera
-system/lib/liboemcamera.so
-system/lib/libmmipl.so
-system/lib/libmmjpeg.so
+lib/liboemcamera.so
+lib/libmmipl.so
+lib/libmmjpeg.so
 
 # Graphics-2D
-system/lib/hw/gralloc.default.so
-system/lib/hw/gralloc.thunderg.so
+# lib/hw/gralloc.default.so
+# lib/hw/gralloc.thunderg.so
 
 # Graphics-3D
-system/lib/egl/egl.cfg
-system/lib/egl/libEGL_adreno200.so
-system/lib/egl/libGLESv1_CM_adreno200.so
-system/lib/egl/libGLESv2_adreno200.so
-system/lib/egl/libq3dtools_adreno200.so
-system/lib/libgsl.so
-system/etc/firmware/yamato_pfp.fw
-system/etc/firmware/yamato_pm4.fw
+lib/egl/egl.cfg
+lib/egl/libEGL_adreno200.so
+lib/egl/libGLESv1_CM_adreno200.so
+lib/egl/libGLESv2_adreno200.so
+lib/egl/libq3dtools_adreno200.so
+lib/libgsl.so
+etc/firmware/yamato_pfp.fw
+etc/firmware/yamato_pm4.fw
 
 # Keylayouts
-system/usr/keychars/thunder_keypad.kcm.bin
-system/usr/keylayout/thunder_keypad.kl
-system/usr/keylayout/7k_handset.kl
+usr/keychars/thunder_keypad.kcm.bin
+usr/keylayout/thunder_keypad.kl
+usr/keylayout/7k_handset.kl
 
 # LGE services
-system/bin/netmgrd
-system/bin/port-bridge
-system/bin/qmuxd
-system/bin/rmt_storage
-system/bin/wiperiface
-system/lib/libdsutils.so
-system/lib/libnetmgr.so
+bin/qmuxd
+lib/libdsutils.so
+lib/libnetmgr.so
+# bin/netmgrd
+# bin/port-bridge
+# bin/rmt_storage
+# bin/wiperiface
 
 # RIL
-system/lib/libauth.so
-system/lib/libbcmwl.so
-system/lib/libcm.so
-system/lib/libdiag.so
-system/lib/libdll.so
-system/lib/libdsm.so
-system/lib/libdss.so
-system/lib/libgsdi_exp.so
-system/lib/libgstk_exp.so
-system/lib/liblgdrm.so
-system/lib/liblgdrmwbxml.so
-system/lib/liblgeat.so
-system/lib/liblgerft.so
-system/lib/libmmgsdilib.so
-system/lib/libnv.so
-system/lib/liboem_rapi.so
-system/lib/liboncrpc.so
-system/lib/libpbmlib.so
-system/lib/libqmi.so
-system/lib/libqueue.so
-system/lib/libril-qc-1.so
-system/lib/libril-qcril-hook-oem.so
-system/lib/libsnd.so
-system/lib/libwms.so
-system/lib/libwmsts.so
-system/bin/rild
+lib/libauth.so
+lib/libbcmwl.so
+lib/libcm.so
+lib/libdiag.so
+lib/libdll.so
+lib/libdsm.so
+lib/libdss.so
+lib/libgsdi_exp.so
+lib/libgstk_exp.so
+lib/liblgdrm.so
+lib/liblgdrmwbxml.so
+lib/liblgeat.so
+lib/liblgerft.so
+lib/libmmgsdilib.so
+lib/libnv.so
+lib/liboem_rapi.so
+lib/liboncrpc.so
+lib/libpbmlib.so
+lib/libqmi.so
+lib/libqueue.so
+lib/libril-qc-1.so
+lib/libril-qcril-hook-oem.so
+lib/libsnd.so
+lib/libwms.so
+lib/libwmsts.so
+bin/rild
 
 # propietary libril
-system/lib/libril.so
+lib/libril.so
 
 # Sensors
-system/bin/ami304d
-system/lib/hw/sensors.thunderg.so
-system/lib/libsensorservice.so
+bin/ami304d
+lib/hw/sensors.thunderg.so
+lib/libsensorservice.so
 
 # Touchscreen
-system/bin/tsdown
-system/etc/MELFAS_FIRM.bin
+bin/tsdown
+etc/MELFAS_FIRM.bin
 
 # Wifi
-system/etc/wl/nvram.txt
-system/etc/wl/rtecdc.bin
-system/etc/wl/rtecdc-apsta.bin
-system/etc/wl/rtecdc-mfgtest.bin
+etc/wl/nvram.txt
+etc/wl/rtecdc.bin
+etc/wl/rtecdc-apsta.bin
+etc/wl/rtecdc-mfgtest.bin
 
 # OMX
-system/lib/libmm-adspsvc.so
-system/lib/libOmxAacDec.so
-system/lib/libOmxAacEnc.so
-system/lib/libOmxAdpcmDec.so
-system/lib/libOmxAmrDec.so
-system/lib/libOmxAmrEnc.so
-system/lib/libOmxAmrRtpDec.so
-system/lib/libOmxAmrwbDec.so
-system/lib/libOmxEvrcDec.so
-system/lib/libOmxEvrcEnc.so
-system/lib/libOmxH264Dec.so
-system/lib/libOmxMp3Dec.so
-system/lib/libOmxMpeg4Dec.so
-system/lib/libOmxQcelp13Enc.so
-system/lib/libOmxQcelpDec.so
-system/lib/libOmxVidEnc.so
-system/lib/libOmxWmaDec.so
-system/lib/libOmxWmvDec.so
+lib/divxdrmdecrypt.so
+lib/libmm-adspsvc.so
+lib/libOmxAacDec.so
+lib/libOmxAacEnc.so
+lib/libOmxAdpcmDec.so
+lib/libOmxAmrDec.so
+lib/libOmxAmrEnc.so
+lib/libOmxAmrRtpDec.so
+lib/libOmxAmrwbDec.so
+lib/libOmxEvrcDec.so
+lib/libOmxEvrcEnc.so
+lib/libOmxEvrcHwEnc.so
+lib/libOmxH264Dec.so
+lib/libOmxMp3Dec.so
+lib/libOmxMpeg4Dec.so
+lib/libOmxOn2Dec.so
+lib/libOmxQcelp13Enc.so
+lib/libOmxQcelpDec.so
+lib/libOmxQcelpHwDec.so
+lib/libOmxVidEnc.so
+lib/libOmxWmaDec.so
+lib/libOmxWmvDec.so
 
