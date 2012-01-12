@@ -65,6 +65,7 @@ adb pull /system/lib/libaudioeq.so ../../../vendor/$VENDOR/$DEVICE/proprietary/l
 adb pull /system/lib/hw/copybit.msm7k.so ../../../vendor/$VENDOR/$DEVICE/proprietary/lib/hw/copybit.msm7k.so
 adb pull /system/lib/hw/lights.thunderg.so ../../../vendor/$VENDOR/$DEVICE/proprietary/lib/hw/lights.thunderg.so
 adb pull /system/lib/hw/sensors.thunderg.so ../../../vendor/$VENDOR/$DEVICE/proprietary/lib/hw/sensors.thunderg.so
+adb pull /system/lib/hw/gralloc.thunderg.so ../../../vendor/$VENDOR/$DEVICE/proprietary/lib/hw/
 
 ## EGL
 adb pull /system/lib/egl/libGLESv2_adreno200.so ../../../vendor/$VENDOR/$DEVICE/proprietary/lib/egl/libGLESv2_adreno200.so
