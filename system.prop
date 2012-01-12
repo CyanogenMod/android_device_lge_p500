@@ -20,6 +20,6 @@ ro.telephony.ril_class=lgeqcom
 dalvik.vm.heapsize=24m
 
 # modified camera blob wants this
-ro.product.qcomdevice=msm7627_surf
+ro.product.camera=thunderg
 
 ro.bt.bdaddr_path=/data/misc/bd_addr

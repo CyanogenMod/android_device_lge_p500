@@ -23,6 +23,10 @@
 #include <camera/Camera.h>
 #include <camera/CameraParameters.h>
 
+/* Ugly hack: We need to fix the preview rotation, so overload
+ * the output of getOrientation from cameraservice*/
+#define HAL_TRANSFORM_ROT_270 0
+
 namespace android {
 
 class Overlay;
@@ -84,22 +88,38 @@ typedef void (*data_callback_timestamp)(nsecs_t timestamp,
  */
 class CameraHardwareInterface : public virtual RefBase {
 public:
-    virtual ~CameraHardwareInterface() { }
+    virtual ~CameraHardwareInterface() { } // 4
 
     /** Return the IMemoryHeap for the preview image heap */
-    virtual sp<IMemoryHeap>         getPreviewHeap() const = 0;
+    virtual sp<IMemoryHeap>         getPreviewHeap() const = 0; // 8
 
+    /* Fillers */
+    virtual status_t fillerA(void) = 0;
+    virtual status_t fillerB(void) = 0;
     /** Return the IMemoryHeap for the raw image heap */
-    virtual sp<IMemoryHeap>         getRawHeap() const = 0;
+    virtual sp<IMemoryHeap>         getRawHeap() const = 0; // 20
 
-    /** Filler to match the blob's ABI */
+    /** Fillers to match the blob's ABI... WTF, 60-byte shift */
     virtual status_t getShutterSound(int) = 0;
+    virtual status_t fillerC(void) = 0;
+    virtual status_t fillerD(void) = 0;
+    virtual status_t fillerE(void) = 0;
+    virtual status_t fillerF(void) = 0;
+    virtual status_t fillerG(void) = 0;
+    virtual status_t fillerH(void) = 0;
+    virtual status_t fillerI(void) = 0;
+    virtual status_t fillerJ(void) = 0;
+    virtual status_t fillerK(void) = 0;
+    virtual status_t fillerL(void) = 0;
+    virtual status_t fillerM(void) = 0;
+    virtual status_t fillerN(void) = 0;
+    virtual status_t fillerO(void) = 0;
 
     /** Set the notification and data callbacks */
     virtual void setCallbacks(notify_callback notify_cb,
                               data_callback data_cb,
                               data_callback_timestamp data_cb_timestamp,
-                              void* user) = 0;
+                              void* user) = 0; // 80
 
     /**
      * The following three functions all take a msgtype,
@@ -110,12 +130,12 @@ public:
     /**
      * Enable a message, or set of messages.
      */
-    virtual void        enableMsgType(int32_t msgType) = 0; // 24
+    virtual void        enableMsgType(int32_t msgType) = 0; // 84
 
     /**
      * Disable a message, or a set of messages.
      */
-    virtual void        disableMsgType(int32_t msgType) = 0; // 28
+    virtual void        disableMsgType(int32_t msgType) = 0; // 88
 
     /**
      * Query whether a message, or a set of messages, is enabled.
@@ -134,7 +154,7 @@ public:
      * This is needed because the opencore expects the buffer
      * information before starting the recording.
      */
-    virtual status_t    getBufferInfo(sp<IMemory>& Frame, size_t *alignedSize) = 0;
+    virtual status_t    getBufferInfo(sp<IMemory>& Frame, size_t *alignedSize) = 0; // 100
 
     /**
      * Encode the YUV data.
@@ -155,7 +175,7 @@ public:
     /**
      * Returns true if preview is enabled.
      */
-    virtual bool        previewEnabled() = 0;
+    virtual bool        previewEnabled() = 0; // 120
 
     /**
      * Start record mode. When a record image is available a CAMERA_MSG_VIDEO_FRAME
@@ -211,7 +231,7 @@ public:
     virtual status_t    setParameters(const CameraParameters& params) = 0; //96
 
     /** Return the camera parameters. */
-    virtual CameraParameters  getParameters() const = 0;
+    virtual CameraParameters  getParameters() const = 0; // 160
 
     /**
      * Send command to camera driver.
