@@ -39,8 +39,6 @@ PRODUCT_COPY_FILES += \
 
 # chargermode
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/prebuilt/02removefbcon:system/etc/init.d/02removefbcon \
-    $(LOCAL_PATH)/prebuilt/fbconsole.ko:system/lib/modules/fbconsole.ko \
     $(LOCAL_PATH)/chargemode/chargerimages/battery_ani_01.rle:root/chargerimages/battery_ani_01.rle \
     $(LOCAL_PATH)/chargemode/chargerimages/battery_ani_02.rle:root/chargerimages/battery_ani_02.rle \
     $(LOCAL_PATH)/chargemode/chargerimages/battery_ani_03.rle:root/chargerimages/battery_ani_03.rle \
