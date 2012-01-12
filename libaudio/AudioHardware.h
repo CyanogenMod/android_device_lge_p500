@@ -26,8 +26,8 @@
 #include <hardware_legacy/AudioHardwareBase.h>
 
 extern "C" {
-#include <msm_audio.h>
-#include <msm_audio_voicememo.h>
+#include "msm_audio.h"
+#include "msm_audio_voicememo.h"
 }
 
 namespace android {
@@ -49,20 +49,17 @@ namespace android {
 #define EQ_MAX_BAND_NUM 12
 
 #define ADRC_ENABLE  0x0001
-#define ADRC_DISABLE 0xFFFE
+#define ADRC_DISABLE 0x0000
 #define EQ_ENABLE    0x0002
-#define EQ_DISABLE   0xFFFD
+#define EQ_DISABLE   0x0000
 #define RX_IIR_ENABLE  0x0004
-#define RX_IIR_DISABLE 0xFFFB
+#define RX_IIR_DISABLE 0x0000
 #define MBADRC_ENABLE  0x0010
-#define MBADRC_DISABLE 0xFFEF
+#define MBADRC_DISABLE 0x0000
 
 #define AGC_ENABLE     0x0001
 #define NS_ENABLE      0x0002
 #define TX_IIR_ENABLE  0x0004
-
-#define DEVICE_OUT_SPEAKER_IN_CALL 0x2000
-#define DEVICE_OUT_SPEAKER_RING 0x4000
 
 struct eq_filter_type {
     int16_t gain;
@@ -154,6 +151,7 @@ enum tty_modes {
 #define AUDIO_HW_IN_BUFFERSIZE 2048                 // Default audio input buffer size
 #define AUDIO_HW_IN_FORMAT (AudioSystem::PCM_16_BIT)  // Default audio input sample format
 // ----------------------------------------------------------------------------
+
 
 class AudioHardware : public  AudioHardwareBase
 {
@@ -308,12 +306,15 @@ private:
             msm_snd_endpoint *mSndEndpoints;
             int mNumSndEndpoints;
             int mCurSndDevice;
-#ifdef HAVE_FM_RADIO
-            bool mFmRadioEnabled;
-#endif
+	    int mFmRadioEnabled;
+	    int mFmPrev;
+	    int mFmVolume;
             int m7xsnddriverfd;
+            int fmfd;
             bool        mDualMicEnabled;
             int         mTtyMode;
+
+            bool        mBuiltinMicSelected;
 
      friend class AudioStreamInMSM72xx;
             Mutex       mLock;
