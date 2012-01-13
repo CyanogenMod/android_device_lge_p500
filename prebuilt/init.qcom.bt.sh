@@ -40,6 +40,11 @@ kill_hciattach ()
 }
 
 /system/bin/brcm_patchram_plus -d --patchram /etc/firmware/BCM4325D1_004.002.004.0218.0248.hcd /dev/ttyHS0
+logi "Fixing PCM setting..."
+/system/xbin/hcitool cmd 0x3f 0x1c 0x00 0x04 0x00 0x00 0x00
+logi "Writing Sleep mode setting..."
+/system/xbin/hcitool cmd 0x3f 0x27 0x01 0x01 0x10 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00
+logi "Setting baudrate..."
 /system/bin/brcm_patchram_plus -d -baudrate 3000000 /dev/ttyHS0 
 exit_code_hci_qcomm_download=$?
 
