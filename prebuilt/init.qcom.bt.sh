@@ -39,7 +39,7 @@ kill_hciattach ()
   # this shell doesn't exit now -- wait returns for normal exit
 }
 
-/system/bin/brcm_patchram_plus -d --patchram /etc/firmware/BCM4330B1_002.001.003.0337.0338.hcd /dev/ttyHS0
+/system/bin/brcm_patchram_plus -d --patchram /etc/firmware/BCM4325D1_004.002.004.0218.0248.hcd /dev/ttyHS0
 /system/bin/brcm_patchram_plus -d -baudrate 3000000 /dev/ttyHS0 
 exit_code_hci_qcomm_download=$?
 
