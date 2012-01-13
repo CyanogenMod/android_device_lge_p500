@@ -23,9 +23,10 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/init.thunderg.rc:root/init.thunderg.rc \
     $(LOCAL_PATH)/ueventd.thunderg.rc:root/ueventd.thunder.rc
 
-# BT startup
+# BT
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/prebuilt/init.qcom.bt.sh:system/bin/init.qcom.bt.sh
+    $(LOCAL_PATH)/prebuilt/init.qcom.bt.sh:system/bin/init.qcom.bt.sh \
+    $(LOCAL_PATH)/prebuilt/brcm_patchram_plus:system/bin/brcm_patchram_plus
 
 # configs
 PRODUCT_COPY_FILES += \
