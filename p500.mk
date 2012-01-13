@@ -74,6 +74,7 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     gps.p500 \
     hwaddrs \
+    copybit.msm7k \
     libOmxCore
 
 $(call inherit-product, build/target/product/full.mk)
