@@ -25,7 +25,7 @@ failed ()
 start_hciattach ()
 {
   echo 1 > $BLUETOOTH_SLEEP_PATH
-  /system/bin/hciattach -n /dev/ttyHS0 any 3000000 flow &
+  /system/bin/hciattach -n /dev/ttyHS0 any 4000000 flow &
   hciattach_pid=$!
   logi "start_hciattach: pid = $hciattach_pid"
 }
@@ -40,7 +40,7 @@ kill_hciattach ()
 }
 
 /system/bin/brcm_patchram_plus -d --patchram /etc/firmware/BCM4330B1_002.001.003.0337.0338.hcd /dev/ttyHS0
-/system/bin/brcm_patchram_plus -d -baudrate 3000000 /dev/ttyHS0 
+/system/bin/brcm_patchram_plus -d -baudrate 4000000 /dev/ttyHS0
 exit_code_hci_qcomm_download=$?
 
 case $exit_code_hci_qcomm_download in
