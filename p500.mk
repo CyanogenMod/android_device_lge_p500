@@ -70,6 +70,7 @@ PRODUCT_COPY_FILES += \
     frameworks/base/data/etc/android.hardware.touchscreen.multitouch.distinct.xml:system/etc/permissions/android.hardware.touchscreen.multitouch.distinct.xml
 
 PRODUCT_PACKAGES += \
+    copybit.p500 \
     gps.p500 \
     hwaddrs \
     libOmxCore
