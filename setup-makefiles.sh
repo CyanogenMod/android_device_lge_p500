@@ -111,7 +111,6 @@ PRODUCT_COPY_FILES += \\
 
 ## HAL
 PRODUCT_COPY_FILES += \\
-    vendor/__VENDOR__/__DEVICE__/proprietary/lib/hw/lights.thunderg.so:system/lib/hw/lights.thunderg.so \\
     vendor/__VENDOR__/__DEVICE__/proprietary/lib/hw/sensors.thunderg.so:system/lib/hw/sensors.thunderg.so \\
     vendor/__VENDOR__/__DEVICE__/proprietary/lib/hw/gralloc.thunderg.so:system/lib/hw/gralloc.thunderg.so
 

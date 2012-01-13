@@ -62,7 +62,6 @@ adb pull /system/etc/flex/flex.xml ../../../vendor/$VENDOR/$DEVICE/proprietary/e
 adb pull /system/lib/libaudioeq.so ../../../vendor/$VENDOR/$DEVICE/proprietary/lib/libaudioeq.so
 
 ## HAL
-adb pull /system/lib/hw/lights.thunderg.so ../../../vendor/$VENDOR/$DEVICE/proprietary/lib/hw/lights.thunderg.so
 adb pull /system/lib/hw/sensors.thunderg.so ../../../vendor/$VENDOR/$DEVICE/proprietary/lib/hw/sensors.thunderg.so
 adb pull /system/lib/hw/gralloc.thunderg.so ../../../vendor/$VENDOR/$DEVICE/proprietary/lib/hw/
 

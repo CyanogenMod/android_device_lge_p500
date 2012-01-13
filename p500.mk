@@ -73,6 +73,7 @@ PRODUCT_COPY_FILES += \
 
 PRODUCT_PACKAGES += \
     gps.p500 \
+    lights.p500 \
     hwaddrs \
     copybit.msm7k \
     libOmxCore
