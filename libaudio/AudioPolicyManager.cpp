@@ -16,6 +16,7 @@
 
 #define LOG_TAG "AudioPolicyManager"
 //#define LOG_NDEBUG 0
+#define DEVICE_OUT_SPEAKER_IN_CALL 0x4000
 #include <utils/Log.h>
 #include "AudioPolicyManager.h"
 #include <media/mediarecorder.h>
@@ -115,6 +116,11 @@ uint32_t AudioPolicyManager::getDeviceForStrategy(routing_strategy strategy, boo
                 if (device) break;
             }
 #endif
+            if (mPhoneState == AudioSystem::MODE_IN_CALL) {
+                device = DEVICE_OUT_SPEAKER_IN_CALL;
+                if (device) break;
+            }
+
             device = mAvailableOutputDevices & AudioSystem::DEVICE_OUT_SPEAKER;
             if (device == 0) {
                 LOGE("getDeviceForStrategy() speaker device not found");
