@@ -2177,19 +2177,16 @@ status_t AudioHardware::AudioStreamInMSM72xx::setParameters(const String8& keyVa
 
 status_t AudioHardware::setFmVolume(float v)
 {
-    float ratio = 2.5;
+    float ratio = 0.2;
     int volume = (unsigned int)(AudioSystem::logToLinear(v) * ratio);
-    char volhex[10] = "";
-    sprintf(volhex, "0x%x ", volume);
-    char volreg[100] = "hcitool cmd 0x3f 0xa 0x5 0xe0 0x41 0xf 0 ";
 
-    strcat(volreg, volhex);
+    struct msm_snd_set_fm_radio_vol_param args;
+    args.volume = volume;
 
-    strcat(volreg, "0 0 0");
-
-    system("hcitool cmd 0x3f 0xa 0x5 0xc0 0x41 0xf 0 0x20 0 0 0");
-    system("hcitool cmd 0x3f 0xa 0x5 0xe4 0x41 0xf 0 0x00 0 0 0");
-    system(volreg);
+    if (ioctl(m7xsnddriverfd, SND_SET_FM_RADIO_VOLUME, &args) < 0) {
+        LOGE("set_volume_fm error.");
+        return -EIO;
+    }
     return NO_ERROR;
 }
 #endif

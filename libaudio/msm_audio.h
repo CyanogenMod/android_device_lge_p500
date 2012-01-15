@@ -208,6 +208,12 @@ struct msm_snd_endpoint {
 #define SND_AVC_CTL _IOW(SND_IOCTL_MAGIC, 6, unsigned *)
 #define SND_AGC_CTL _IOW(SND_IOCTL_MAGIC, 7, unsigned *)
 
+struct msm_snd_set_fm_radio_vol_param {
+ int32_t volume;
+};
+
+#define SND_SET_FM_RADIO_VOLUME _IOWR(SND_IOCTL_MAGIC, 17, int *)
+
 struct msm_audio_pcm_config {
  uint32_t pcm_feedback;
  uint32_t buffer_count;
