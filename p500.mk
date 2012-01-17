@@ -33,6 +33,10 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/media_profiles.xml:system/etc/media_profiles.xml \
     $(LOCAL_PATH)/configs/7k_handset.kl:system/usr/keylayout/7k_handset.kl
 
+# keycharmap
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/prebuilt/thunder_keypad.kcm.bin:system/usr/keychars/thunder_keypad.kcm.bin
+
 # WiFi
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/nvram.txt:system/etc/wl/nvram.txt \
