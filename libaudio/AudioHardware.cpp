@@ -37,10 +37,12 @@
 
 #define LOG_SND_RPC 0  // Set to 1 to log sound RPC's
 
-#define COMBO_DEVICE_SUPPORTED 0 // Headset speaker combo device not supported on this target
+#undef COMBO_DEVICE_SUPPORTED // Headset speaker combo device not supported on this target
 #define DUALMIC_KEY "dualmic_enabled"
 #define TTY_MODE_KEY "tty_mode"
-#define DEVICE_OUT_SPEAKER_IN_CALL 0x4000
+
+#define DEVICE_OUT_SPEAKER_IN_CALL 0x2000
+#define DEVICE_OUT_SPEAKER_RING 0x4000
 
 namespace android {
 static int audpre_index, tx_iir_index;
@@ -421,23 +423,20 @@ status_t AudioHardware::setParameters(const String8& keyValuePairs)
         if(mMode != AudioSystem::MODE_IN_CALL){
            return NO_ERROR;
         }
-    } else {
-	mTtyMode = TTY_OFF;
+        doRouting(NULL);
     }
 
+
 #ifdef HAVE_FM_RADIO
-    key = String8(AudioParameter::keyFmOn);
     int devices;
-    if (param.getInt(key, devices) == NO_ERROR) {
+    if (param.getInt(String8(AudioParameter::keyFmOn), devices) == NO_ERROR) {
+       LOGE("devices = %d", devices);
        setFmOnOff(true);
-    }
-    key = String8(AudioParameter::keyFmOff);
-    if (param.getInt(key, devices) == NO_ERROR) {
+    } else if (param.getInt(String8(AudioParameter::keyFmOff), devices) == NO_ERROR) {
+       LOGE("devices = %d", devices);
        setFmOnOff(false);
     }
 #endif
-
-    doRouting(NULL);
 
     return NO_ERROR;
 }
@@ -1179,15 +1178,11 @@ status_t AudioHardware::setMasterVolume(float v)
 #ifdef HAVE_FM_RADIO
 status_t AudioHardware::setFmOnOff(bool onoff)
 {
-    int ret;
+    LOGE("setFmOnOff(%d) called", onoff);
 
-    if (onoff) {
-        mFmRadioEnabled = true;
-    } else {
-        mFmRadioEnabled = false;
-    }
+    mFmRadioEnabled = onoff;
 
-    return NO_ERROR;
+    return doRouting(NULL);
 }
 #endif
 
@@ -1361,7 +1356,7 @@ status_t AudioHardware::doRouting(AudioStreamInMSM72xx *input)
 #endif
         } else if (outputDevices & AudioSystem::DEVICE_OUT_WIRED_HEADSET) {
             if (mFmRadioEnabled) {
-                LOGI("Routing FM audio to Wired Headset\n");
+                LOGI("Routing FM audio to FM Headset\n");
                 new_snd_device = SND_DEVICE_FM_HEADSET;
             } else {
                 LOGI("Routing audio to Wired Headset\n");
@@ -1682,7 +1677,7 @@ status_t AudioHardware::AudioStreamOutMSM72xx::setParameters(const String8& keyV
     if (param.getInt(key, device) == NO_ERROR) {
         mDevices = device;
         LOGV("set output routing %x", mDevices);
-	status = mHardware->setParameters(keyValuePairs);
+	    status = mHardware->setParameters(keyValuePairs);
         status = mHardware->doRouting(NULL);
         param.remove(key);
     }
