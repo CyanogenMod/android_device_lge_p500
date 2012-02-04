@@ -76,7 +76,8 @@ PRODUCT_PACKAGES += \
     lights.p500 \
     hwaddrs \
     copybit.msm7k \
-    libOmxCore
+    libOmxCore \
+    lgapversion
 
 $(call inherit-product, build/target/product/full.mk)
 
