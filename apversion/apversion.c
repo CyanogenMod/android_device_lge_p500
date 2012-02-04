@@ -38,7 +38,7 @@ int main() {
     tcsetattr( fd, TCSANOW, &ios );
     old_flags = fcntl(fd, F_GETFL, 0);
     fcntl(fd, F_SETFL, old_flags | O_NONBLOCK);
-    write(fd,"AT%SWV\r",7);
+    write(fd,"AT%SWOV\r",8);
     sleep(1);
 
     read_bytes = read(fd,sync_buf,sizeof(sync_buf));
