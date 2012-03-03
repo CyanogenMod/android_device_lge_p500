@@ -13,8 +13,6 @@ persist.rild.nitz_short_ons_0=
 persist.rild.nitz_short_ons_1=
 persist.rild.nitz_short_ons_2=
 persist.rild.nitz_short_ons_3=
-ril.subscription.types=NV,RUIM
-ro.telephony.ril_class=lgeqcom
 
 # larger vm heaps
 dalvik.vm.heapsize=24m

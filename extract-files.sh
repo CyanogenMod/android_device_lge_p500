@@ -46,6 +46,7 @@ adb pull /system/lib/liblgeat.so ../../../vendor/$VENDOR/$DEVICE/proprietary/lib
 adb pull /system/lib/libcm.so ../../../vendor/$VENDOR/$DEVICE/proprietary/lib/libcm.so
 adb pull /system/lib/libqueue.so ../../../vendor/$VENDOR/$DEVICE/proprietary/lib/libqueue.so
 adb pull /system/lib/liblgerft.so ../../../vendor/$VENDOR/$DEVICE/proprietary/lib/liblgerft.so
+adb pull /system/lib/libdll.so ../../../vendor/$VENDOR/$DEVICE/proprietary/lib/libdll.so
 adb pull /system/lib/libdss.so ../../../vendor/$VENDOR/$DEVICE/proprietary/lib/libdss.so
 adb pull /system/lib/libbcmwl.so ../../../vendor/$VENDOR/$DEVICE/proprietary/lib/libbcmwl.so
 adb pull /system/lib/libwmsts.so ../../../vendor/$VENDOR/$DEVICE/proprietary/lib/libwmsts.so
@@ -55,6 +56,7 @@ adb pull /system/lib/liblgdrm.so ../../../vendor/$VENDOR/$DEVICE/proprietary/lib
 adb pull /system/lib/libsnd.so ../../../vendor/$VENDOR/$DEVICE/proprietary/lib/libsnd.so
 adb pull /system/lib/libril.so ../../../vendor/$VENDOR/$DEVICE/proprietary/lib/libril.so
 adb pull /system/bin/qmuxd ../../../vendor/$VENDOR/$DEVICE/proprietary/bin/qmuxd
+adb pull /system/bin/rild ../../../vendor/$VENDOR/$DEVICE/proprietary/bin/rild
 adb pull /system/etc/flex/flex.xml ../../../vendor/$VENDOR/$DEVICE/proprietary/etc/flex/flex.xml
 
 ## Audio
