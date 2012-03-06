@@ -21,3 +21,6 @@ dalvik.vm.heapsize=24m
 ro.product.camera=thunderg
 
 ro.bt.bdaddr_path=/data/misc/bd_addr
+
+## We support GLES2
+ro.opengles.version=131072
