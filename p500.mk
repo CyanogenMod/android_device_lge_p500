@@ -77,6 +77,7 @@ PRODUCT_PACKAGES += \
     hwaddrs \
     copybit.msm7k \
     libOmxCore \
+    libcamera \
     lgapversion
 
 $(call inherit-product, build/target/product/full.mk)
