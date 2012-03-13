@@ -1,4 +1,5 @@
-USE_CAMERA_STUB := true
+USE_CAMERA_STUB := false
+BOARD_USE_FROYO_LIBCAMERA := true
 
 # inherit from the proprietary version
 -include vendor/lge/p500/BoardConfigVendor.mk
@@ -48,8 +49,8 @@ BOARD_EGL_CFG := device/lge/p500/configs/egl.cfg
 
 TARGET_SPECIFIC_HEADER_PATH := device/lge/p500/include
 TARGET_LIBAGL_USE_GRALLOC_COPYBITS := true
-BOARD_CAMERA_USE_GETBUFFERINFO := true
-BOARD_USE_CAF_LIBCAMERA := true
+#BOARD_CAMERA_USE_GETBUFFERINFO := true
+#BOARD_USE_CAF_LIBCAMERA := true
 
 BOARD_WLAN_DEVICE := bcm4325
 WIFI_DRIVER_FW_STA_PATH         := "/system/etc/wl/rtecdc.bin"
