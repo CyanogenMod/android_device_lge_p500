@@ -1300,8 +1300,8 @@ status_t AudioHardware::doRouting(AudioStreamInMSM72xx *input)
                 LOGI("Routing audio to Bluetooth PCM\n");
                 new_snd_device = SND_DEVICE_BT;
             } else if (inputDevice & AudioSystem::DEVICE_IN_WIRED_HEADSET) {
-                    LOGI("Routing audio to Wired Headset\n");
-                    new_snd_device = SND_DEVICE_HEADSET_STEREO;
+                    LOGI("Routing audio to Wired Headset 1 (Skype etc.)\n");
+                    new_snd_device = SND_DEVICE_HEADSET;
             } else {
                 if (outputDevices & AudioSystem::DEVICE_OUT_SPEAKER) {
                     LOGI("Routing audio to Speakerphone\n");
@@ -1366,7 +1366,7 @@ status_t AudioHardware::doRouting(AudioStreamInMSM72xx *input)
                 new_post_proc_feature_mask = (EQ_ENABLE | RX_IIR_ENABLE);
                 new_post_proc_feature_mask &= (MBADRC_DISABLE | ADRC_DISABLE);
             } else {
-                LOGI("Routing audio to Wired Headset\n");
+                LOGI("Routing audio to Wired Headset 2 (Phone calls)\n");
                 new_snd_device = SND_DEVICE_HEADSET_STEREO;
                 new_post_proc_feature_mask = (ADRC_ENABLE | EQ_ENABLE | RX_IIR_ENABLE | MBADRC_ENABLE);
             }
@@ -1377,7 +1377,7 @@ status_t AudioHardware::doRouting(AudioStreamInMSM72xx *input)
                 new_post_proc_feature_mask = (EQ_ENABLE | RX_IIR_ENABLE);
                 new_post_proc_feature_mask &= (MBADRC_DISABLE | ADRC_DISABLE);
             } else {
-                LOGI("Routing audio to Wired Headset\n");
+                LOGI("Routing audio to Wired Headset 3\n");
                 new_snd_device = SND_DEVICE_HEADSET_STEREO;
                 new_post_proc_feature_mask = (ADRC_ENABLE | EQ_ENABLE | RX_IIR_ENABLE | MBADRC_ENABLE);
             }
