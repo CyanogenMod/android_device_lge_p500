@@ -26,8 +26,8 @@
 #include <hardware_legacy/AudioHardwareBase.h>
 
 extern "C" {
-#include "msm_audio.h"
-#include "msm_audio_voicememo.h"
+#include <linux/msm_audio.h>
+#include <linux/msm_audio_voicememo.h>
 }
 
 namespace android {
@@ -280,6 +280,8 @@ private:
         virtual unsigned int  getInputFramesLost() const { return 0; }
                 uint32_t    devices() { return mDevices; }
                 int         state() const { return mState; }
+        virtual status_t    addAudioEffect(effect_interface_s**) { return 0;}
+        virtual status_t    removeAudioEffect(effect_interface_s**) { return 0;}
 
     private:
                 AudioHardware* mHardware;
@@ -306,15 +308,14 @@ private:
             msm_snd_endpoint *mSndEndpoints;
             int mNumSndEndpoints;
             int mCurSndDevice;
-	    int mFmRadioEnabled;
-	    int mFmPrev;
-	    int mFmVolume;
             int m7xsnddriverfd;
+            bool mDualMicEnabled;
+            int  mTtyMode;
+            bool mBuiltinMicSelected;
+            int mFmRadioEnabled;
+            int mFmPrev;
+            int mFmVolume;
             int fmfd;
-            bool        mDualMicEnabled;
-            int         mTtyMode;
-
-            bool        mBuiltinMicSelected;
 
      friend class AudioStreamInMSM72xx;
             Mutex       mLock;
