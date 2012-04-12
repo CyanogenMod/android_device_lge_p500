@@ -26,8 +26,8 @@
 #include <hardware_legacy/AudioHardwareBase.h>
 
 extern "C" {
-#include "msm_audio.h"
-#include "msm_audio_voicememo.h"
+#include <linux/msm_audio.h>
+#include <linux/msm_audio_voicememo.h>
 }
 
 namespace android {

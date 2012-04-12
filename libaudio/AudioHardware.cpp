@@ -1300,8 +1300,8 @@ status_t AudioHardware::doRouting(AudioStreamInMSM72xx *input)
                 LOGI("Routing audio to Bluetooth PCM\n");
                 new_snd_device = SND_DEVICE_BT;
             } else if (inputDevice & AudioSystem::DEVICE_IN_WIRED_HEADSET) {
-                    LOGI("Routing audio to Wired Headset\n");
-                    new_snd_device = SND_DEVICE_HEADSET_STEREO;
+                    LOGI("Routing audio to Wired Headset 1 (VOIP Path)\n");
+                    new_snd_device = SND_DEVICE_HEADSET;
             } else {
                 if (outputDevices & AudioSystem::DEVICE_OUT_SPEAKER) {
                     LOGI("Routing audio to Speakerphone\n");
@@ -1359,6 +1359,24 @@ status_t AudioHardware::doRouting(AudioStreamInMSM72xx *input)
                 new_snd_device = SND_DEVICE_NO_MIC_HEADSET;
             }
 #endif
+/*
+SND_DEVICE_HEADSET = mono audio + active mic
+SND_DEVICE_HEADSET_STEREO = stereo audio + muted mic
+CM7 incorrectly detects headphones as a wired headset, so we cannot have
+stereo output and use the handset mic during a call. Here detect whether
+we are in a call or not to determine which route to use. */
+        } else if ((mMode == AudioSystem::MODE_IN_CALL) &&
+                  (outputDevices & AudioSystem::DEVICE_OUT_WIRED_HEADSET)) {
+            if (mFmRadioEnabled) {
+                LOGI("Routing FM audio to Wired Headset\n");
+                new_snd_device = SND_DEVICE_FM_HEADSET;
+                new_post_proc_feature_mask = (EQ_ENABLE | RX_IIR_ENABLE);
+                new_post_proc_feature_mask &= (MBADRC_DISABLE | ADRC_DISABLE);
+            } else {
+                LOGI("Routing audio to Wired Headset 2a (Phone Call Path)\n");
+                new_snd_device = SND_DEVICE_HEADSET;
+                new_post_proc_feature_mask = (ADRC_ENABLE | EQ_ENABLE | RX_IIR_ENABLE | MBADRC_ENABLE);
+            }
         } else if (outputDevices & AudioSystem::DEVICE_OUT_WIRED_HEADSET) {
             if (mFmRadioEnabled) {
                 LOGI("Routing FM audio to Wired Headset\n");
@@ -1366,7 +1384,7 @@ status_t AudioHardware::doRouting(AudioStreamInMSM72xx *input)
                 new_post_proc_feature_mask = (EQ_ENABLE | RX_IIR_ENABLE);
                 new_post_proc_feature_mask &= (MBADRC_DISABLE | ADRC_DISABLE);
             } else {
-                LOGI("Routing audio to Wired Headset\n");
+                LOGI("Routing audio to Wired Headset 2b (Media Path)\n");
                 new_snd_device = SND_DEVICE_HEADSET_STEREO;
                 new_post_proc_feature_mask = (ADRC_ENABLE | EQ_ENABLE | RX_IIR_ENABLE | MBADRC_ENABLE);
             }
@@ -1377,7 +1395,7 @@ status_t AudioHardware::doRouting(AudioStreamInMSM72xx *input)
                 new_post_proc_feature_mask = (EQ_ENABLE | RX_IIR_ENABLE);
                 new_post_proc_feature_mask &= (MBADRC_DISABLE | ADRC_DISABLE);
             } else {
-                LOGI("Routing audio to Wired Headset\n");
+                LOGI("Routing audio to Wired Headset 3 (Unused Media Path)\n");
                 new_snd_device = SND_DEVICE_HEADSET_STEREO;
                 new_post_proc_feature_mask = (ADRC_ENABLE | EQ_ENABLE | RX_IIR_ENABLE | MBADRC_ENABLE);
             }
