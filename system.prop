@@ -24,3 +24,7 @@ ro.bt.bdaddr_path=/data/misc/bd_addr
 
 ## We support GLES2
 ro.opengles.version=131072
+
+## qc ril doesn't repeat the rings
+ro.telephony.call_ring.multiple=false
+ro.telephony.call_ring.delay=3000
