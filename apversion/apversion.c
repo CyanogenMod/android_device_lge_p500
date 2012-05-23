@@ -22,28 +22,39 @@
 /* Read original sw version from modem and apply it as baseband */
 
 int main() {
+
     struct termios  ios;
     char sync_buf[256];
     char *readbuf = sync_buf;
     char *result;
     int old_flags;
-    int fd=open("/dev/smd7",O_RDWR);
+    int retry_left = 5;
 
-    int read_bytes=0;
-    if (fd<=0) {
+retry:
+  {
+    --retry_left;
+    int fd = open("/dev/smd7", O_RDWR);
+    int read_bytes = 0;
+
+    if (fd <= 0) {
         return 1;
     }
-    tcgetattr( fd, &ios );
+    tcgetattr(fd, &ios);
     ios.c_lflag = 0;
-    tcsetattr( fd, TCSANOW, &ios );
+    tcsetattr(fd, TCSANOW, &ios);
     old_flags = fcntl(fd, F_GETFL, 0);
     fcntl(fd, F_SETFL, old_flags | O_NONBLOCK);
-    write(fd,"AT%SWOV\r",8);
+    write(fd,"AT%SWOV\r", 8);
     sleep(1);
 
-    read_bytes = read(fd,sync_buf,sizeof(sync_buf));
+    read_bytes = read(fd, sync_buf, sizeof(sync_buf));
+    close(fd);
 
-    if (read_bytes) {
+    if (-1 == read_bytes && 0 < retry_left) { // If O_NONBLOCK is set, read() shall return "-1" when the modem was busy.
+        sleep(1);
+        goto retry;
+    }
+    else if (read_bytes > 0) { // The modem is not busy
         /* Skip first echoed line */
         while (read_bytes && *readbuf != '\n' && *readbuf !='\0') {
             readbuf++;
@@ -66,18 +77,28 @@ int main() {
             read_bytes--;
         }
         *readbuf='\0';
-        close(fd);
 
         /* Do we have something ? */
-        if (strlen(result)>2) {
+        if (strlen(result) > 2) {
             /* Chop off first and last chars */
             *result++;
             *--readbuf='\0';
+
+            /* The baseband string begins with LGP */
+            if (0 == strncmp(result, "LGP", 3)) {
+                property_set("gsm.version.baseband", result);
+                //printf("%s\n",result);
+                return 0;
+            }
+            else if (0 < retry_left) {
+                sleep(1);
+                goto retry;
+            }
         }
-        property_set("gsm.version.baseband", result);
-        //printf("%s\n",result);
-        return 0;
-    }
-    return 3;
+     }
+  }
+
+  // We tried many times but no luck. Can't set baseband string, modem is always busy.
+  return 3;
 }
 

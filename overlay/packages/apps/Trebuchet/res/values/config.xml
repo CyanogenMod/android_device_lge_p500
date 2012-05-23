@@ -1,0 +1,10 @@
+<!-- this enable hwacceleration in Trebuchet Launcher -->
+
+
+
+
+
+<resources>
+    <bool name="config_cyanogenmod">true</bool>
+    <bool name="config_hardwareAccelerated">true</bool>
+</resources>

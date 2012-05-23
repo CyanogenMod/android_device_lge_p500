@@ -355,7 +355,7 @@ struct msm_snd_72xx_rpc_extcmd_config {
     uint32_t rpc_extcmd;
     uint32_t option;
 
-    uint32_t result;
+    uint32_t result;    
 };
 
 #define SND_72XX_RPC_EXTCMD _IOWR(SND_IOCTL_MAGIC, 8, struct msm_snd_72xx_rpc_extcmd_config *)

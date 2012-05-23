@@ -1,0 +1,10 @@
+LG P500 ICS Setup
+
+Copy/paste it WORKING_DIR/.repo/local_manifest.xml
+
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest>
+  <project path="device/lge/p500" name="p500/cm_device_lge_p500" remote="github" revision="master" />
+  <project path="vendor/lge/p500" name="p500/cm_vendor_lge_p500" remote="github" revision="master" />
+  <project path="kernel/lge/p500" name="p500/lge-kernel-msm7x27" remote="github" revision="android-ics-msm-2.6.35" />
+</manifest>
