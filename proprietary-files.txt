@@ -1,0 +1,87 @@
+# Sample file to extract required files from an original LG P500 device
+# This script is not required if you have the proprietary repository
+#
+# This file is the file list used by extract-files.sh
+
+## RIL
+bin/qmuxd
+etc/flex/flex.xml
+lib/libgstk_exp.so
+lib/libqmi.so
+lib/libpbmlib.so
+lib/libmmgsdilib.so
+lib/libril-qcril-hook-oem.so
+lib/libdsm.so
+lib/liboncrpc.so
+lib/libril-qc-qmi-1.so
+lib/libnv.so
+lib/libauth.so
+lib/libril.so
+lib/libwms.so
+lib/libdiag.so
+lib/liboem_rapi.so
+lib/libgsdi_exp.so
+lib/libril-qc-1.so
+lib/liblgeat.so
+lib/libcm.so
+lib/libqueue.so
+lib/liblgerft.so
+lib/libdss.so
+lib/libdll.so
+lib/libbcmwl.so
+lib/libwmsts.so
+lib/libdsutils.so
+lib/libidl.so
+lib/liblgdrm.so
+lib/libsnd.so
+
+## AUDIO
+lib/libaudioeq.so
+
+## CAMERA
+lib/liboemcamera.so
+lib/libcamera.so
+lib/libmmjpeg.so
+lib/libmmipl.so
+
+## BT & WiFi
+etc/firmware/BCM4325D1_004.002.004.0218.0248.hcd
+etc/wl/rtecdc.bin
+etc/wl/rtecdc-apsta.bin
+
+## HAL
+bin/ami304d
+lib/hw/sensors.p500.so
+
+## EGL
+lib/egl/libEGL_adreno200.so
+lib/egl/libGLESv1_CM_adreno200.so
+lib/egl/libGLESv2_adreno200.so
+lib/egl/libq3dtools_adreno200.so
+lib/egl/libGLES_android.so
+lib/egl/eglsubAndroid.so
+lib/libsc-a2xx.so
+lib/libgsl.so
+etc/firmware/yamato_pfp.fw
+etc/firmware/yamato_pm4.fw
+
+## OMX Encoders/Decoders
+lib/libOmxAacDec.so
+lib/libOmxAacEnc.so
+lib/libOmxAdpcmDec.so
+lib/libOmxAmrDec.so
+lib/libOmxAmrEnc.so
+lib/libOmxAmrRtpDec.so
+lib/libOmxAmrwbDec.so
+lib/libOmxEvrcEnc.so
+lib/libOmxEvrcHwDec.so
+lib/libOmxH264Dec.so
+lib/libOmxMp3Dec.so
+lib/libOmxMpeg4Dec.so
+lib/libOmxOn2Dec.so
+lib/libOmxQcelp13Enc.so
+lib/libOmxQcelpHwDec.so
+lib/libOmxVidEnc.so
+lib/libOmxWmaDec.so
+lib/libOmxWmvDec.so
+lib/libmm-adspsvc.so
