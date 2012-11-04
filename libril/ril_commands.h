@@ -61,7 +61,7 @@
     {RIL_REQUEST_CHANGE_BARRING_PASSWORD, dispatchStrings, responseVoid},
     {RIL_REQUEST_QUERY_NETWORK_SELECTION_MODE, dispatchVoid, responseInts},
     {RIL_REQUEST_SET_NETWORK_SELECTION_AUTOMATIC, dispatchVoid, responseVoid},
-    {RIL_REQUEST_SET_NETWORK_SELECTION_MANUAL, dispatchString, responseVoid},
+    {RIL_REQUEST_SET_NETWORK_SELECTION_MANUAL, dispatchNetworkManual, responseVoid},
     {RIL_REQUEST_QUERY_AVAILABLE_NETWORKS , dispatchVoid, responseStringsNetworks},
     {RIL_REQUEST_DTMF_START, dispatchString, responseVoid},
     {RIL_REQUEST_DTMF_STOP, dispatchVoid, responseVoid},
