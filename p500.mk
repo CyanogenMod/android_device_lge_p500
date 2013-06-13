@@ -21,7 +21,7 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/prebuilt/initlogo.rle:root/initlogo.rle \
     $(LOCAL_PATH)/init.thunderg.rc:root/init.thunderg.rc \
-    $(LOCAL_PATH)/ueventd.thunderg.rc:root/ueventd.thunderg.rc
+    $(LOCAL_PATH)/ueventd.thunderg.rc:root/ueventd.thunder.rc
 
 # BT startup
 PRODUCT_COPY_FILES += \
